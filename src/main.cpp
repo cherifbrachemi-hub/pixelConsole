@@ -24,19 +24,24 @@ int main()
 	{
 		std::string buffer;
 		buffer.reserve((WIDTH + 1) * HEIGHT);
-		
-		float t = (sin(frame / 20.0) + 1.0) / 2.0;
-		int rayonExt = 5+t *11;
-		int rayonInt = rayonExt -3;
+	
 
-		for (int y = 0; y < HEIGHT; y++)
+		for (int x = 0; x < WIDTH; x++)
 		{
-			for (int x = 0; x < WIDTH; x++)
+			float valeurSin1 = sin(x * 0.3 + frame * 0.1);
+			float t1 = (valeurSin1 + 1.0) / 2.0;
+			int hauteurVague1 = (HEIGHT / 4) + t1 * (HEIGHT / 2);
+
+			float valeurSin2 = sin(x * 0.3 + frame * 0.1 + 9.5);
+			float t2 = (valeurSin2 + 1.0) / 2.0;
+			int hauteurVague2 = (HEIGHT / 4) + t2 * (HEIGHT / 2);
+
+			for (int y = 0; y < HEIGHT; y++)
 			{
-				int dx = x-centreX;
-				int dy = (y-centreY) * 2;
-				int distanceXY = dx * dx + dy * dy;
-				bool on =  (rayonInt * rayonInt <= distanceXY) && (distanceXY <= rayonExt * rayonExt);
+				
+
+
+				bool on = (y==hauteurVague1) || (y == hauteurVague2);
 
 				buffer += on ? '#' : ' ';
 			}
