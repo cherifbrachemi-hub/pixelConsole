@@ -2,6 +2,7 @@
 #include<string>
 #include <thread>
 #include <chrono>
+#include <cmath>
 
 const int WIDTH = 40;
 const int HEIGHT = 40;
@@ -24,9 +25,9 @@ int main()
 		std::string buffer;
 		buffer.reserve((WIDTH + 1) * HEIGHT);
 		
-		
-		int rayonExt = 16;
-		int rayonInt = 13;
+		float t = (sin(frame / 20.0) + 1.0) / 2.0;
+		int rayonExt = 5+t *11;
+		int rayonInt = rayonExt -3;
 
 		for (int y = 0; y < HEIGHT; y++)
 		{
