@@ -24,7 +24,7 @@ int main()
 		{
 			for (int x = 0; x < WIDTH; x++)
 			{
-				bool on = (y % 2) == 0;
+				bool on = (x + y) % 8 == 0;
 				buffer += on ? '#' : ' ';
 			}
 			buffer += '\n';
