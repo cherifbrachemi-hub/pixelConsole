@@ -27,7 +27,7 @@ int main()
 			for (int x = 0; x < WIDTH; x++)
 			{
 
-				bool on = (x == 0 || y == 0) || (x == 39 || y == 19);
+				bool on = x == WIDTH / 2 || y == HEIGHT / 2;
 
 				//find another solution without testing every character
 				
