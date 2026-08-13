@@ -21,15 +21,22 @@ int main()
 		std::string buffer;
 		buffer.reserve((WIDTH + 1) * HEIGHT);
 
+		int rectL{ 20 };
+		int rectH{ 7 };
+
+		int halfH{ HEIGHT / 2 };
+		int halfW{ WIDTH / 2 };
+
+
+
 		for (int y = 0; y < HEIGHT; y++)
 		{
 			
 			for (int x = 0; x < WIDTH; x++)
 			{
+				bool on = ((halfW - rectL / 2) < x && x < (halfW + rectL / 2)) && ((halfH - rectH / 2) < y && y < (halfH + rectH / 2));
 
-				bool on = x == WIDTH / 2 || y == HEIGHT / 2;
-
-				//find another solution without testing every character
+				//find another solution without testing every character 
 				
 				buffer += on ? '#' : ' ';
 			}
