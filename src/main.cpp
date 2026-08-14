@@ -4,8 +4,8 @@
 #include <chrono>
 #include <cmath>
 
-const int WIDTH = 40;
-const int HEIGHT = 20;
+const int width = 100;
+const int height = 20;
 
 void clearScreen()
 {
@@ -19,25 +19,26 @@ int main()
 	while (true)
 	{
 		std::string buffer;
-		buffer.reserve((WIDTH + 1) * HEIGHT);
+		buffer.reserve((width + 1) * height);
 
-		int rectL{ 20 };
-		int rectH{ 7 };
+		double format{ 1.5 };
 
-		int halfH{ HEIGHT / 2 };
-		int halfW{ WIDTH / 2 };
-
-
-
-		for (int y = 0; y < HEIGHT; y++)
+		double rectW{ width/format };
+		double rectH{ height/format };
+		
+		double dx{ (width - rectW) / 2 };
+		double dy{ (height - rectH) / 2 };
+		
+		
+		for (int y = 0; y < height; y++)
 		{
 			
-			for (int x = 0; x < WIDTH; x++)
+			for (int x = 0; x < width; x++)
 			{
-				bool on = ((halfW - rectL / 2) < x && x < (halfW + rectL / 2)) && ((halfH - rectH / 2) < y && y < (halfH + rectH / 2));
-
-				//find another solution without testing every character 
 				
+							
+				bool on = (dx < x && x < width - dx) && (dy < y && y < height - dy);
+
 				buffer += on ? '#' : ' ';
 			}
 			buffer += '\n';
