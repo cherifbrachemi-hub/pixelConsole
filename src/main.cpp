@@ -1,55 +1,40 @@
 #include<iostream>
-#include<string>
-#include <thread>
-#include <chrono>
-#include <cmath>
 
-const int width = 100;
-const int height = 20;
 
-void clearScreen()
-{
-	std::cout << "\x1B[2J\x1B[H";
-}
 
 int main()
 {
-	int frame = 0;
+	
+	const int screenL{ 80 };
+	const int screenH{ 20 };
 
-	while (true)
-	{
-		std::string buffer;
-		buffer.reserve((width + 1) * height);
+	char grid[screenH][screenL];
 
-		double format{ 1.5 };
+	int rectLength{40};
+	int rectHeight{10};
 
-		double rectW{ width/format };
-		double rectH{ height/format };
+	int dx{ (screenL - rectLength) / 2 };
+	int dy{ (screenH - rectHeight) / 2 };
+
+
+	for (int i = 0; i <= (screenH-1); i++) {
 		
-		double dx{ (width - rectW) / 2 };
-		double dy{ (height - rectH) / 2 };
-		
-		
-		for (int y = 0; y < height; y++)
-		{
-			
-			for (int x = 0; x < width; x++)
-			{
-				
-							
-				bool on = (dx < x && x < width - dx) && (dy < y && y < height - dy);
-
-				buffer += on ? '#' : ' ';
+		for (int j = 0; j <= (screenL-1); j++) {
+			if ((j >= dx && j <= (screenL - dx)) && (i >= dy) && (i <= (screenH - dy))) {
+				grid[i][j] = '1';
 			}
-			buffer += '\n';
+			else
+				grid[i][j] = '0';
 		}
+	}
 
-		clearScreen();
-		std::cout << buffer;
-		std::cout.flush();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(60));
-		frame++;
+	//Print
+	for (int i = 0; i <= (screenH-1); i++) {
+		for (int j = 0; j <= (screenL-1); j++) {
+			std::cout << grid[i][j];
+		}
+		std::cout << '\n';
 	}
 
 	return 0;
