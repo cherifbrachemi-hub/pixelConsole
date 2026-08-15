@@ -20,7 +20,7 @@ int main()
 	for (int i = 0; i <= (screenH-1); i++) {
 		
 		for (int j = 0; j <= (screenL-1); j++) {
-			if ((j >= dx && j <= (screenL - dx)) && (i >= dy) && (i <= (screenH - dy))) {
+			if ((i == j) || (j == (screenL - 1 - i))){
 				grid[i][j] = '1';
 			}
 			else
