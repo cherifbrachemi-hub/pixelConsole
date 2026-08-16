@@ -1,59 +1,33 @@
 #include<iostream>
-
-
-const int screenL{ 80 };
-const int screenH{ 20 };
-
-char grid[screenH][screenL];
-
-bool condition(int i, int j) {
-	if ((i == j) || (j == (screenL - 1 - i))) {
-		return true;
-	}
-	else
-		return false;
-}
-
-
-void fillGrid() {
-	for (int i = 0; i <= (screenH - 1); i++) {
-		for (int j = 0; j <= (screenL - 1); j++) {
-			
-			bool on{condition(i,j)};
-
-			if (on) {
-				grid[i][j] = '1';
-			}
-			else
-				grid[i][j] = '0';
-		}
-	}
-}
-
-void printGrid() {
-	for (int i = 0; i <= (screenH - 1); i++) {
-		for (int j = 0; j <= (screenL - 1); j++) {
-			std::cout << grid[i][j];
-		}
-		std::cout << '\n';
-	}
-}
+#include<cmath>
+#include"Header.h"
 
 
 
 int main()
 {
 	
-	int rectLength{40};
-	int rectHeight{10};
+	Grid inventory(10, 5);
+	IdManager mgr;
+	inventory.print_grid();
 
-	int dx{ (screenL - rectLength) / 2 };
-	int dy{ (screenH - rectHeight) / 2 };
 
-	//fill
-	fillGrid();
+	//inventory.can_place_at(0, 4, sword);
 
-	//Print
-	printGrid();
+	Item sword(mgr.create_id(), "Sword", 2, 3);
+	Item potion(mgr.create_id(), "Potion", 1, 1);
+
+	inventory.place_item(1, 2, sword);
+
+
+	inventory.print_grid();
+	
+	int a = mgr.create_id();  // devrait être 0
+	int b = mgr.create_id();  // devrait être 1
+	int c = mgr.create_id();  // devrait être 2
+	mgr.remove_at_slot(b);    // libère l'ID 1
+	int d = mgr.create_id();  // devrait réutiliser 1, pas créer 3
+
+	
 	return 0;
 }
